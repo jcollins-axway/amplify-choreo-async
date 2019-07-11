@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "item-id-aggregation.fullname" . }}-sidecar-config
+  labels:
+    app.kubernetes.io/name: {{ include "item-id-aggregation.name" . }}
+    helm.sh/chart: {{ include "item-id-aggregation.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+data:
+  BROKER_HOST: {{ .Values.ace.sidecar.brokerHost }}
+  BROKER_PORT: {{ .Values.ace.sidecar.brokerPort | quote }}
+  REGISTRATION_HOST: {{ .Values.ace.sidecar.executiveHost }}
+  REGISTRATION_PORT: {{ .Values.ace.sidecar.executivePort | quote }}

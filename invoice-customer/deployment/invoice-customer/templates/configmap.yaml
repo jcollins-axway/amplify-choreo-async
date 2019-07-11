@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "invoice-customer.fullname" . }}-config
+  labels:
+    app.kubernetes.io/name: {{ include "invoice-customer.name" . }}
+    helm.sh/chart: {{ include "invoice-customer.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+data:
+  SERVICE_NAME: {{ .Values.serviceName }}
+  SERVICE_VERSION: {{ .Values.serviceVersion | quote}}
+  SERVICE_DESCRIPTION: {{ template "invoice-customer.description" . }}
+  SERVICE_TYPE: {{ .Values.serviceType }}
+  LOG_LEVEL: {{ .Values.serviceLogLevel }}

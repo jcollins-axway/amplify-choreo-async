@@ -1,0 +1,27 @@
+{
+  "name": "invoice-customer",
+  "version": "2.1.1",
+  "description": "Send the customer an invoice for the items ordered",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "docker build -t invoice-customer:2.1.1 .",
+    "push": "docker tag invoice-customer:2.1.1 jcollins7227/invoice-customer:2.1.1 && docker push jcollins7227/invoice-customer:2.1.1",
+    "helm_deploy": "helm upgrade --install --wait --namespace ace-runtime -f overrides.yaml invoice-customer-2.1.1 ./deployment/invoice-customer/",
+    "helm_delete": "helm delete --purge invoice-customer-2.1.1",
+    "start": "node main.js",
+    "tsc": "tsc main.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@axway/ace-sdk": "^0.0.8",
+    "bytebuffer": "^5.0.1",
+    "nodemailer": "^6.2.1"
+  },
+  "devDependencies": {
+    "@types/bytebuffer": "^5.0.40",
+    "@types/long": "^4.0.0",
+    "typescript": "^3.3.3333"
+  }
+}

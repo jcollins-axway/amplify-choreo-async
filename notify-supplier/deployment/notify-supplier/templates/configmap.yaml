@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "notify-supplier.fullname" . }}-config
+  labels:
+    app.kubernetes.io/name: {{ include "notify-supplier.name" . }}
+    helm.sh/chart: {{ include "notify-supplier.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+data:
+  SERVICE_NAME: {{ .Values.serviceName }}
+  SERVICE_VERSION: {{ .Values.serviceVersion | quote}}
+  SERVICE_DESCRIPTION: {{ template "notify-supplier.description" . }}
+  SERVICE_TYPE: {{ .Values.serviceType }}
+  LOG_LEVEL: {{ .Values.serviceLogLevel }}

@@ -1,0 +1,26 @@
+{
+  "name": "check-inventory",
+  "version": "0.2.0",
+  "description": "Check the current inventory",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "docker build -t check-inventory:0.2.0 .",
+    "push": "docker tag check-inventory:0.2.0 jcollins7227/check-inventory:0.2.0 && docker push jcollins7227/check-inventory:0.2.0",
+    "helm_deploy": "helm upgrade --install --wait --namespace ace-runtime -f overrides.yaml check-inventory-0.2.0 ./deployment/check-inventory/",
+    "helm_delete": "helm delete --purge check-inventory-0.2.0",
+    "start": "node main.js",
+    "tsc": "tsc main.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@axway/ace-sdk": "^0.0.8",
+    "bytebuffer": "^5.0.1"
+  },
+  "devDependencies": {
+    "@types/bytebuffer": "^5.0.40",
+    "@types/long": "^4.0.0",
+    "typescript": "^3.3.3333"
+  }
+}

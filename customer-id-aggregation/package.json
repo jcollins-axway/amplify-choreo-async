@@ -1,0 +1,26 @@
+{
+  "name": "customer-id-aggregation",
+  "version": "0.1.0",
+  "description": "Aggregate the incoming orders by Customer ID",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "docker build -t customer-id-aggregation:0.1.0 .",
+    "push": "docker tag customer-id-aggregation:0.1.0 jcollins7227/customer-id-aggregation:0.1.0 && docker push jcollins7227/customer-id-aggregation:0.1.0",
+    "helm_deploy": "helm upgrade --install --wait --namespace ace-runtime -f overrides.yaml customer-id-aggregation-0.1.0 ./deployment/customer-id-aggregation/",
+    "helm_delete": "helm delete --purge customer-id-aggregation-0.1.0",
+    "start": "node main.js",
+    "tsc": "tsc main.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@axway/ace-sdk": "^0.0.8",
+    "bytebuffer": "^5.0.1"
+  },
+  "devDependencies": {
+    "@types/bytebuffer": "^5.0.40",
+    "@types/long": "^4.0.0",
+    "typescript": "^3.3.3333"
+  }
+}

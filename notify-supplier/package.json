@@ -1,0 +1,27 @@
+{
+  "name": "notify-supplier",
+  "version": "1.0.0",
+  "description": "Notify the supplier of a ReOrder",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "docker build -t notify-supplier:1.0.0 .",
+    "push": "docker tag notify-supplier:1.0.0 jcollins7227/notify-supplier:1.0.0 && docker push jcollins7227/notify-supplier:1.0.0",
+    "helm_deploy": "helm upgrade --install --wait --namespace ace-runtime -f overrides.yaml notify-supplier-1.0.0 ./deployment/notify-supplier/",
+    "helm_delete": "helm delete --purge notify-supplier-1.0.0",
+    "start": "node main.js",
+    "tsc": "tsc main.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@axway/ace-sdk": "^0.0.8",
+    "bytebuffer": "^5.0.1",
+    "nodemailer": "^6.2.1"
+  },
+  "devDependencies": {
+    "@types/bytebuffer": "^5.0.40",
+    "@types/long": "^4.0.0",
+    "typescript": "^3.3.3333"
+  }
+}

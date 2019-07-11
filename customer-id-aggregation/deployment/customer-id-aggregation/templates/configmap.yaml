@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "customer-id-aggregation.fullname" . }}-config
+  labels:
+    app.kubernetes.io/name: {{ include "customer-id-aggregation.name" . }}
+    helm.sh/chart: {{ include "customer-id-aggregation.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+data:
+  SERVICE_NAME: {{ .Values.serviceName }}
+  SERVICE_VERSION: {{ .Values.serviceVersion | quote}}
+  SERVICE_DESCRIPTION: {{ template "customer-id-aggregation.description" . }}
+  SERVICE_TYPE: {{ .Values.serviceType }}
+  LOG_LEVEL: {{ .Values.serviceLogLevel }}
